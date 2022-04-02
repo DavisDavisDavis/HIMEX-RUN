@@ -3,26 +3,29 @@ var context = canvas.getContext("2d");
 canvas.width = 600;
 canvas.height = 250;
 var Enemy = /** @class */ (function () {
-    function Enemy(speed, context) {
-        this.x = canvas.width;
+    function Enemy(speed) {
         this.speed = speed;
         this.context = context;
+        this.x = canvas.width;
     }
-    Enemy.prototype.drawEnemy = function () {
-        context.fillStyle = "pink";
+    Enemy.prototype.movement = function () {
         this.x -= this.speed;
-        if (0 >= this.x) {
+        if (-50 >= this.x) {
             this.x = canvas.width;
         }
+        return this.x;
+    };
+    Enemy.prototype.draw = function (context) {
         context.fillStyle = "pink";
-        context.fillRect(this.x, 60, 50, 50);
+        context.fillStyle = "pink";
+        context.fillRect(this.movement(), 100, 50, 50);
     };
     return Enemy;
 }());
-var enemy = new Enemy(1, context);
+var enemy = new Enemy(1.2);
 (function animate() {
     context.fillStyle = "#a1a9fe";
     context.fillRect(0, 0, canvas.width, canvas.height);
-    enemy.drawEnemy();
+    enemy.draw(context);
     window.requestAnimationFrame(animate);
 })();
