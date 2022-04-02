@@ -13,12 +13,11 @@ var Enemy = /** @class */ (function () {
         if (-50 >= this.x) {
             this.x = canvas.width;
         }
-        return this.x;
     };
     Enemy.prototype.draw = function (context) {
+        this.movement();
         context.fillStyle = "pink";
-        context.fillStyle = "pink";
-        context.fillRect(this.movement(), 100, 50, 50);
+        context.fillRect(this.x, 100, 50, 50);
     };
     return Enemy;
 }());
