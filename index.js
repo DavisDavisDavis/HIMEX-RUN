@@ -12,28 +12,41 @@ var Hime = /** @class */ (function () {
         window.addEventListener("click", this.jump.bind(this), false);
     }
     Hime.prototype.movement = function () {
+        /*
         this.y += this.velocity;
+    
         if (this.y >= 140) {
-            this.velocity = 0;
-            this.airborne = false;
+          this.velocity = 0;
+          this.airborne = false;
+        } else {
+          this.velocity = 2.4;
         }
-        else {
-            this.velocity = 2.4;
-        }
+        */
     };
     Hime.prototype.jump = function (e) {
         //this.airborne = true;
-        if (!this.airborne && this.charge == 0) {
-            this.charge = 1;
-            this.velocity = -60;
-            this.airborne = true;
-        }
-        else if (this.charge > 0 && this.charge < 15) {
-            this.charge++;
-            console.log(this.charge);
-            this.velocity = -60 - this.charge / 50;
+        while (true) {
+            this.y += this.velocity;
+            this.velocity += this.acceleration;
+            // Don't go through the floor
+            if (this.y < 140) {
+                this.y = 140;
+            }
+            if (e.click && this.airborne) {
+                this.velocity = -10;
+            }
         }
         /*
+        if (!this.airborne && this.charge == 0) {
+          this.charge = 1;
+          this.velocity = -60;
+          this.airborne = true;
+        } else if (this.charge > 0 && this.charge < 15) {
+          this.charge++;
+          console.log(this.charge);
+          this.velocity = -60 - this.charge / 50;
+        }
+    
         if (this.grounded && this.jumpTimer == 0) {
           this.jumpTimer = 1;
           this.dy = -this.jumpForce;
