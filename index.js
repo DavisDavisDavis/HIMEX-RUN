@@ -17,10 +17,11 @@ var Hime = /** @class */ (function () {
         if (this.airborne) {
             this.airtime++;
             this.velocity = -Math.cos(this.airtime / 10) * 10;
-            console.log(-Math.cos(this.airtime / 360) * 30);
+            console.log(-Math.cos(this.airtime / 10) * 10);
         }
         if (this.y >= 140) {
             this.velocity = 0;
+            this.y = 140;
             this.airtime = 0;
             this.airborne = false;
         }
