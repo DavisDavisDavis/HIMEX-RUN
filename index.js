@@ -5,38 +5,44 @@ canvas.height = 250;
 var Hime = /** @class */ (function () {
     function Hime() {
         this.context = context;
-        this.y = 10;
+        this.y = 80;
         this.height = 35;
         this.velocity = 2.4;
         this.charge = 0;
+        this.airtime = 0;
         window.addEventListener("click", this.jump.bind(this), false);
     }
     Hime.prototype.movement = function () {
-        /*
         this.y += this.velocity;
-    
-        if (this.y >= 140) {
-          this.velocity = 0;
-          this.airborne = false;
-        } else {
-          this.velocity = 2.4;
+        if (this.airborne) {
+            this.airtime++;
+            this.velocity = -Math.cos(this.airtime / 10) * 10;
+            console.log(-Math.cos(this.airtime / 360) * 30);
         }
-        */
+        if (this.y >= 140) {
+            this.velocity = 0;
+            this.airtime = 0;
+            this.airborne = false;
+        }
     };
     Hime.prototype.jump = function (e) {
         //this.airborne = true;
-        while (true) {
-            this.y += this.velocity;
-            this.velocity += this.acceleration;
-            // Don't go through the floor
-            if (this.y < 140) {
-                this.y = 140;
-            }
-            if (e.click && this.airborne) {
-                this.velocity = -10;
-            }
-        }
+        console.log("jump!");
+        this.y -= 1;
+        this.airborne = true;
         /*
+        while (true) {
+          this.y += this.velocity;
+          this.velocity += this.acceleration;
+          // Don't go through the floor
+          if (this.y < 140) {
+            this.y = 140;
+          }
+          if (e.click && this.airborne) {
+            this.velocity = -10;
+          }
+        }
+        
         if (!this.airborne && this.charge == 0) {
           this.charge = 1;
           this.velocity = -60;
