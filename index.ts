@@ -7,6 +7,7 @@ canvas.height = 250;
 class Hime {
   x: number;
   y: number;
+  width: number;
   height: number;
   velocity: number;
   acceleration: number;
@@ -17,7 +18,9 @@ class Hime {
 
   constructor() {
     this.context = context;
+    this.x = 100;
     this.y = 80;
+    this.width = 50;
     this.height = 35;
     this.velocity = 2.4;
     this.charge = 0;
@@ -31,7 +34,7 @@ class Hime {
     if (this.airborne) {
       this.airtime++;
       this.velocity = -Math.cos(this.airtime / 10) * 10;
-      console.log(-Math.cos(this.airtime / 10) * 10);
+      //console.log(-Math.cos(this.airtime / 10) * 10);
     }
 
     if (this.y >= 140) {
@@ -51,18 +54,20 @@ class Hime {
   draw(context: CanvasRenderingContext2D) {
     this.movement();
     context.fillStyle = "pink";
-    context.fillRect(100, this.y, 50, 50);
+    context.fillRect(this.x, this.y, this.width, 50);
   }
 }
 
 class Enemy {
   x: number;
   //y: number;
+  width: number;
   speed: number;
   context: CanvasRenderingContext2D;
 
-  constructor(speed: number) {
-    this.speed = speed;
+  constructor() {
+    this.width = 50;
+    this.speed = 1.5;
     this.context = context;
     this.x = canvas.width;
   }
@@ -77,17 +82,25 @@ class Enemy {
   draw(context: CanvasRenderingContext2D) {
     this.movement();
     context.fillStyle = "pink";
-    context.fillRect(this.x, 140, 50, 50);
+    context.fillRect(this.x, 140, this.width, 50);
   }
 }
 
 const hime = new Hime();
-const enemy = new Enemy(1.2);
+const enemy = new Enemy();
+
+function colission(hime: Hime, enemy: Enemy) {
+  console.log(`hime: ${hime.x} enemy: ${enemy.x}`);
+  if (hime.x + hime.width > enemy.x && hime.x < enemy.x + enemy.width) {
+    console.log("baang! 💥");
+  }
+}
 
 (function animate() {
   context.fillStyle = "#a1a9fe";
   context.fillRect(0, 0, canvas.width, canvas.height);
 
+  colission(hime, enemy);
   hime.draw(context);
   enemy.draw(context);
 
