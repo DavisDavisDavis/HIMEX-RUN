@@ -27,41 +27,9 @@ var Hime = /** @class */ (function () {
         }
     };
     Hime.prototype.jump = function (e) {
-        //this.airborne = true;
         console.log("jump!");
-        this.y -= 1;
         this.airborne = true;
-        /*
-        while (true) {
-          this.y += this.velocity;
-          this.velocity += this.acceleration;
-          // Don't go through the floor
-          if (this.y < 140) {
-            this.y = 140;
-          }
-          if (e.click && this.airborne) {
-            this.velocity = -10;
-          }
-        }
-        
-        if (!this.airborne && this.charge == 0) {
-          this.charge = 1;
-          this.velocity = -60;
-          this.airborne = true;
-        } else if (this.charge > 0 && this.charge < 15) {
-          this.charge++;
-          console.log(this.charge);
-          this.velocity = -60 - this.charge / 50;
-        }
-    
-        if (this.grounded && this.jumpTimer == 0) {
-          this.jumpTimer = 1;
-          this.dy = -this.jumpForce;
-        } else if (this.jumpTimer > 0 && this.jumpTimer < 15) {
-          this.jumpTimer++;
-          this.dy = -this.jumpForce - (this.jumpTimer / 50);
-        }
-        */
+        this.y -= 1;
     };
     Hime.prototype.draw = function (context) {
         this.movement();
