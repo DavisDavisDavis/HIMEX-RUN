@@ -42,6 +42,7 @@ var Hime = /** @class */ (function () {
 }());
 var Enemy = /** @class */ (function () {
     function Enemy() {
+        this.y = 50;
         this.width = 50;
         this.speed = 1.5;
         this.context = context;
@@ -56,7 +57,7 @@ var Enemy = /** @class */ (function () {
     Enemy.prototype.draw = function (context) {
         this.movement();
         context.fillStyle = "pink";
-        context.fillRect(this.x, 140, this.width, 50);
+        context.fillRect(this.x, 140, this.width, this.y);
     };
     return Enemy;
 }());
@@ -64,7 +65,10 @@ var hime = new Hime();
 var enemy = new Enemy();
 function colission(hime, enemy) {
     console.log("hime: ".concat(hime.x, " enemy: ").concat(enemy.x));
-    if (hime.x + hime.width > enemy.x && hime.x < enemy.x + enemy.width) {
+    console.log("hime: ".concat(hime.y, " enemy: ").concat(enemy.y));
+    if (hime.x + hime.width > enemy.x &&
+        hime.x < enemy.x + enemy.width &&
+        hime.y > enemy.y) {
         console.log("baang! 💥");
     }
 }

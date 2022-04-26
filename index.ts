@@ -60,12 +60,13 @@ class Hime {
 
 class Enemy {
   x: number;
-  //y: number;
+  y: number;
   width: number;
   speed: number;
   context: CanvasRenderingContext2D;
 
   constructor() {
+    this.y = 50;
     this.width = 50;
     this.speed = 1.5;
     this.context = context;
@@ -82,7 +83,7 @@ class Enemy {
   draw(context: CanvasRenderingContext2D) {
     this.movement();
     context.fillStyle = "pink";
-    context.fillRect(this.x, 140, this.width, 50);
+    context.fillRect(this.x, 140, this.width, this.y);
   }
 }
 
@@ -91,7 +92,12 @@ const enemy = new Enemy();
 
 function colission(hime: Hime, enemy: Enemy) {
   console.log(`hime: ${hime.x} enemy: ${enemy.x}`);
-  if (hime.x + hime.width > enemy.x && hime.x < enemy.x + enemy.width) {
+  console.log(`hime: ${hime.y} enemy: ${enemy.y}`);
+  if (
+    hime.x + hime.width > enemy.x &&
+    hime.x < enemy.x + enemy.width &&
+    hime.y > enemy.y
+  ) {
     console.log("baang! 💥");
   }
 }
