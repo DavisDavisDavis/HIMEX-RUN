@@ -8,7 +8,7 @@ var Hime = /** @class */ (function () {
         this.x = 100;
         this.y = 80;
         this.width = 50;
-        this.height = 35;
+        this.height = 50;
         this.velocity = 2.4;
         this.charge = 0;
         this.airtime = 0;
@@ -36,13 +36,13 @@ var Hime = /** @class */ (function () {
     Hime.prototype.draw = function (context) {
         this.movement();
         context.fillStyle = "pink";
-        context.fillRect(this.x, this.y, this.width, 50);
+        context.fillRect(this.x, this.y, this.width, this.height);
     };
     return Hime;
 }());
 var Enemy = /** @class */ (function () {
     function Enemy() {
-        this.y = 50;
+        this.y = 140;
         this.width = 50;
         this.speed = 2;
         this.context = context;
@@ -57,7 +57,7 @@ var Enemy = /** @class */ (function () {
     Enemy.prototype.draw = function (context) {
         this.movement();
         context.fillStyle = "pink";
-        context.fillRect(this.x, 140, this.width, this.y);
+        context.fillRect(this.x, this.y, this.width, this.width);
     };
     return Enemy;
 }());
@@ -65,11 +65,11 @@ var hime = new Hime();
 var enemy = new Enemy();
 var gameOver = document.querySelector(".game-over");
 function colission(hime, enemy) {
-    console.log("hime: ".concat(hime.x, " enemy: ").concat(enemy.x));
+    //console.log(`hime: ${hime.x} enemy: ${enemy.x}`);
     console.log("hime: ".concat(hime.y, " enemy: ").concat(enemy.y));
     if (hime.x + hime.width > enemy.x &&
         hime.x < enemy.x + enemy.width &&
-        hime.y > enemy.y) {
+        hime.y + hime.height > enemy.y) {
         console.log("baang! 💥");
         //gameOver.style.display = "block";
         cancelAnimationFrame(animate);

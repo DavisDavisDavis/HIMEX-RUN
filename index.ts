@@ -21,7 +21,7 @@ class Hime {
     this.x = 100;
     this.y = 80;
     this.width = 50;
-    this.height = 35;
+    this.height = 50;
     this.velocity = 2.4;
     this.charge = 0;
     this.airtime = 0;
@@ -54,7 +54,7 @@ class Hime {
   draw(context: CanvasRenderingContext2D) {
     this.movement();
     context.fillStyle = "pink";
-    context.fillRect(this.x, this.y, this.width, 50);
+    context.fillRect(this.x, this.y, this.width, this.height);
   }
 }
 
@@ -66,7 +66,7 @@ class Enemy {
   context: CanvasRenderingContext2D;
 
   constructor() {
-    this.y = 50;
+    this.y = 140;
     this.width = 50;
     this.speed = 2;
     this.context = context;
@@ -83,7 +83,7 @@ class Enemy {
   draw(context: CanvasRenderingContext2D) {
     this.movement();
     context.fillStyle = "pink";
-    context.fillRect(this.x, 140, this.width, this.y);
+    context.fillRect(this.x, this.y, this.width, this.width);
   }
 }
 
@@ -92,12 +92,12 @@ const enemy = new Enemy();
 const gameOver = document.querySelector(".game-over");
 
 function colission(hime: Hime, enemy: Enemy) {
-  console.log(`hime: ${hime.x} enemy: ${enemy.x}`);
+  //console.log(`hime: ${hime.x} enemy: ${enemy.x}`);
   console.log(`hime: ${hime.y} enemy: ${enemy.y}`);
   if (
     hime.x + hime.width > enemy.x &&
     hime.x < enemy.x + enemy.width &&
-    hime.y > enemy.y
+    hime.y + hime.height > enemy.y
   ) {
     console.log("baang! 💥");
     //gameOver.style.display = "block";
