@@ -2,7 +2,7 @@ const canvas = document.querySelector("canvas");
 const context = canvas.getContext("2d");
 
 canvas.width = 600;
-canvas.height = 250;
+canvas.height = 500;
 
 class Hime {
   x: number;
@@ -37,9 +37,9 @@ class Hime {
       //console.log(-Math.cos(this.airtime / 10) * 10);
     }
 
-    if (this.y >= 140) {
+    if (this.y >= 300) {
       this.velocity = 0;
-      this.y = 140;
+      this.y = 300;
       this.airtime = 0;
       this.airborne = false;
     }
@@ -66,7 +66,7 @@ class Enemy {
   context: CanvasRenderingContext2D;
 
   constructor() {
-    this.y = 140;
+    this.y = 300;
     this.width = 50;
     this.speed = 2;
     this.context = context;
@@ -100,7 +100,7 @@ function colission(hime: Hime, enemy: Enemy) {
     hime.y + hime.height > enemy.y
   ) {
     console.log("baang! 💥");
-    //gameOver.style.display = "block";
+    gameOver.style.display = "block";
     cancelAnimationFrame(animate);
   }
 }

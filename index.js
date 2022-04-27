@@ -1,7 +1,7 @@
 var canvas = document.querySelector("canvas");
 var context = canvas.getContext("2d");
 canvas.width = 600;
-canvas.height = 250;
+canvas.height = 500;
 var Hime = /** @class */ (function () {
     function Hime() {
         this.context = context;
@@ -21,9 +21,9 @@ var Hime = /** @class */ (function () {
             this.velocity = -Math.cos(this.airtime / 25) * 10;
             //console.log(-Math.cos(this.airtime / 10) * 10);
         }
-        if (this.y >= 140) {
+        if (this.y >= 300) {
             this.velocity = 0;
-            this.y = 140;
+            this.y = 300;
             this.airtime = 0;
             this.airborne = false;
         }
@@ -42,7 +42,7 @@ var Hime = /** @class */ (function () {
 }());
 var Enemy = /** @class */ (function () {
     function Enemy() {
-        this.y = 140;
+        this.y = 300;
         this.width = 50;
         this.speed = 2;
         this.context = context;
@@ -71,7 +71,7 @@ function colission(hime, enemy) {
         hime.x < enemy.x + enemy.width &&
         hime.y + hime.height > enemy.y) {
         console.log("baang! 💥");
-        //gameOver.style.display = "block";
+        gameOver.style.display = "block";
         cancelAnimationFrame(animate);
     }
 }
