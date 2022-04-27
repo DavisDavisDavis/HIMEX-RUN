@@ -78,7 +78,7 @@ function colission(hime, enemy) {
 var scoreDisplay = document.querySelector(".score");
 var score = 0;
 function scoreIncrease(enemy) {
-    if (enemy.x <= 0) {
+    if (enemy.x <= -40) {
         enemy.speed += 0.2;
         score++;
         scoreDisplay.innerHTML = score;
@@ -90,5 +90,6 @@ function scoreIncrease(enemy) {
     hime.draw(context);
     enemy.draw(context);
     colission(hime, enemy);
+    scoreIncrease(enemy);
     window.requestAnimationFrame(animate);
 })();
