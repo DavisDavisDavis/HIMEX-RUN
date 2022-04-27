@@ -25,7 +25,7 @@ class Hime {
     this.velocity = 2.4;
     this.charge = 0;
     this.airtime = 0;
-    window.addEventListener("click", this.jump.bind(this), false);
+    window.addEventListener("mousedown", this.jump.bind(this), false);
   }
 
   movement() {
