@@ -33,7 +33,7 @@ class Hime {
 
     if (this.airborne) {
       this.airtime++;
-      this.velocity = -Math.cos(this.airtime / 10) * 10;
+      this.velocity = -Math.cos(this.airtime / 25) * 10;
       //console.log(-Math.cos(this.airtime / 10) * 10);
     }
 
@@ -68,7 +68,7 @@ class Enemy {
   constructor() {
     this.y = 50;
     this.width = 50;
-    this.speed = 1.5;
+    this.speed = 2;
     this.context = context;
     this.x = canvas.width;
   }
@@ -89,6 +89,7 @@ class Enemy {
 
 const hime = new Hime();
 const enemy = new Enemy();
+const gameOver = document.querySelector(".game-over");
 
 function colission(hime: Hime, enemy: Enemy) {
   console.log(`hime: ${hime.x} enemy: ${enemy.x}`);
@@ -99,6 +100,18 @@ function colission(hime: Hime, enemy: Enemy) {
     hime.y > enemy.y
   ) {
     console.log("baang! 💥");
+    //gameOver.style.display = "block";
+    cancelAnimationFrame(animate);
+  }
+}
+
+const scoreDisplay = document.querySelector(".score");
+let score = 0;
+function scoreIncrease(enemy: Enemy) {
+  if (enemy.x <= 0) {
+    enemy.speed += 0.2;
+    score++;
+    scoreDisplay.innerHTML = score;
   }
 }
 
@@ -106,9 +119,9 @@ function colission(hime: Hime, enemy: Enemy) {
   context.fillStyle = "#a1a9fe";
   context.fillRect(0, 0, canvas.width, canvas.height);
 
-  colission(hime, enemy);
   hime.draw(context);
   enemy.draw(context);
+  colission(hime, enemy);
 
   window.requestAnimationFrame(animate);
 })();

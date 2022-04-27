@@ -18,7 +18,7 @@ var Hime = /** @class */ (function () {
         this.y += this.velocity;
         if (this.airborne) {
             this.airtime++;
-            this.velocity = -Math.cos(this.airtime / 10) * 10;
+            this.velocity = -Math.cos(this.airtime / 25) * 10;
             //console.log(-Math.cos(this.airtime / 10) * 10);
         }
         if (this.y >= 140) {
@@ -44,7 +44,7 @@ var Enemy = /** @class */ (function () {
     function Enemy() {
         this.y = 50;
         this.width = 50;
-        this.speed = 1.5;
+        this.speed = 2;
         this.context = context;
         this.x = canvas.width;
     }
@@ -63,6 +63,7 @@ var Enemy = /** @class */ (function () {
 }());
 var hime = new Hime();
 var enemy = new Enemy();
+var gameOver = document.querySelector(".game-over");
 function colission(hime, enemy) {
     console.log("hime: ".concat(hime.x, " enemy: ").concat(enemy.x));
     console.log("hime: ".concat(hime.y, " enemy: ").concat(enemy.y));
@@ -70,13 +71,24 @@ function colission(hime, enemy) {
         hime.x < enemy.x + enemy.width &&
         hime.y > enemy.y) {
         console.log("baang! 💥");
+        //gameOver.style.display = "block";
+        cancelAnimationFrame(animate);
+    }
+}
+var scoreDisplay = document.querySelector(".score");
+var score = 0;
+function scoreIncrease(enemy) {
+    if (enemy.x <= 0) {
+        enemy.speed += 0.2;
+        score++;
+        scoreDisplay.innerHTML = score;
     }
 }
 (function animate() {
     context.fillStyle = "#a1a9fe";
     context.fillRect(0, 0, canvas.width, canvas.height);
-    colission(hime, enemy);
     hime.draw(context);
     enemy.draw(context);
+    colission(hime, enemy);
     window.requestAnimationFrame(animate);
 })();

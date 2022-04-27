@@ -1,3 +1,15 @@
 body {
-  background: black;
+  background: #a1a9fe;
+}
+
+.game-over {
+  padding: 2rem;
+  background: pink;
+
+  position: absolute;
+  display: none;
+}
+
+.game-over p {
+  font-size: 2rem;
 }
