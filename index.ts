@@ -4,6 +4,7 @@ const context = canvas.getContext("2d");
 canvas.width = 600;
 canvas.height = 500;
 
+const himeSprite = document.querySelector(".hime");
 class Hime {
   x: number;
   y: number;
@@ -55,6 +56,7 @@ class Hime {
     this.movement();
     context.fillStyle = "pink";
     context.fillRect(this.x, this.y, this.width, this.height);
+    context.drawImage(himeSprite, this.x, this.y);
   }
 }
 

@@ -2,6 +2,7 @@ var canvas = document.querySelector("canvas");
 var context = canvas.getContext("2d");
 canvas.width = 600;
 canvas.height = 500;
+var himeSprite = document.querySelector(".hime");
 var Hime = /** @class */ (function () {
     function Hime() {
         this.context = context;
@@ -37,6 +38,7 @@ var Hime = /** @class */ (function () {
         this.movement();
         context.fillStyle = "pink";
         context.fillRect(this.x, this.y, this.width, this.height);
+        context.drawImage(himeSprite, this.x, this.y);
     };
     return Hime;
 }());
